@@ -11,7 +11,7 @@
                 "dbo.Genres",
                 c => new
                 {
-                    Id = c.Byte(nullable: false),
+                    Id = c.Byte(nullable: false, identity: true),
                     Name = c.String(nullable: false, maxLength: 255),
                 })
                 .PrimaryKey(t => t.Id);
