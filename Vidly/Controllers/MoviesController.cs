@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
-using System.Data.Entity;
 using Vidly.ViewModel;
 
 namespace Vidly.Controllers
@@ -40,9 +38,10 @@ namespace Vidly.Controllers
             var genres = Context.Genres.ToList();
             var viewModel = new NewMovieViewModel
             {
+                Movie = new Movie(),
                 Genres = genres
             };
-            return View("New", viewModel);
+            return View("MovieForm", viewModel);
         }
 
         [HttpPost]
@@ -88,7 +87,7 @@ namespace Vidly.Controllers
                 Movie = movie,
                 Genres = Context.Genres.ToList()
             };
-            return View("Edit", viewModel);
+            return View("MovieForm", viewModel);
         }
 
 
