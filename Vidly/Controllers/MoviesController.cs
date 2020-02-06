@@ -55,7 +55,7 @@ namespace Vidly.Controllers
                     Movie = movie,
                     Genres = Context.Genres.ToList()
                 };
-                return View("New", viewModel);
+                return View("MovieForm", viewModel);
             }
             if(movie.Id == 0)
             {
@@ -67,7 +67,7 @@ namespace Vidly.Controllers
                 var movieInDb = Context.Movies.Single(m => m.Id == movie.Id);
                 movieInDb.Name = movie.Name;
                 movieInDb.ReleaseDate = movie.ReleaseDate;
-                movieInDb.Genre = movie.Genre;
+                movieInDb.GenreId = movie.GenreId;
                 movieInDb.NumberInStock = movie.NumberInStock;
             }
            
