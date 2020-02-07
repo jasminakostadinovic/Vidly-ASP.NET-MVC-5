@@ -9,10 +9,10 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
-        public MyDBContext Context { get; private set; }
+        public ApplicationDbContext Context { get; private set; }
         public MoviesController()
         {
-            Context = new MyDBContext();
+            Context = new ApplicationDbContext();
         }
         protected override void Dispose(bool disposing)
         {
