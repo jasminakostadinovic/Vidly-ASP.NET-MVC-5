@@ -282,6 +282,14 @@
     <Compile Include="Migrations\202002071707510_AddDrivingLicenseToApplicationUser.designer.cs">
       <DependentUpon>202002071707510_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002081026455_AddPhoneToApplicationUser.cs" />
+    <Compile Include="Migrations\202002081026455_AddPhoneToApplicationUser.designer.cs">
+      <DependentUpon>202002081026455_AddPhoneToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002081039219_ChangePhoneLengthOnAspNetUsers.cs" />
+    <Compile Include="Migrations\202002081039219_ChangePhoneLengthOnAspNetUsers.designer.cs">
+      <DependentUpon>202002081039219_ChangePhoneLengthOnAspNetUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -617,6 +625,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002071707510_AddDrivingLicenseToApplicationUser.resx">
       <DependentUpon>202002071707510_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002081026455_AddPhoneToApplicationUser.resx">
+      <DependentUpon>202002081026455_AddPhoneToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002081039219_ChangePhoneLengthOnAspNetUsers.resx">
+      <DependentUpon>202002081039219_ChangePhoneLengthOnAspNetUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

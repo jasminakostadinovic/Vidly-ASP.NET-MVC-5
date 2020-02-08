@@ -38,6 +38,7 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
+
         public ActionResult New()
         {
             var membershipTypes = Context.MembershipTypes.ToList();
