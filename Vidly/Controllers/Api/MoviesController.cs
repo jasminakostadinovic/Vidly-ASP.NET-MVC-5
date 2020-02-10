@@ -64,6 +64,7 @@ namespace Vidly.Controllers.Api
 
             movieDto.Id = movie.Id;
 
+
             return Created(new Uri(Request.RequestUri + "/" + movie.Id), movieDto);
         }
 

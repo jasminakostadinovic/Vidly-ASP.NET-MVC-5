@@ -30,6 +30,10 @@ namespace Vidly.ViewModel
         [Required]
         public byte? NumberInStock { get; set; }
 
+        [Display(Name = "Number Available")]
+        [Required]
+        public byte? NumberAvailable { get; set; }
+
         public string Title
         {
             get
