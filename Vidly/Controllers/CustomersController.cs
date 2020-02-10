@@ -38,7 +38,7 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
-
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult New()
         {
             var membershipTypes = Context.MembershipTypes.ToList();
@@ -52,6 +52,7 @@ namespace Vidly.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Save(Customer customer)
         {
             if (!ModelState.IsValid)
@@ -70,7 +71,7 @@ namespace Vidly.Controllers
                 var customerInDb = Context.Customers.Single(c => c.Id == customer.Id);
                 customerInDb.Name = customer.Name;
                 customerInDb.Birthdate = customer.Birthdate;
-                customerInDb.MembershipType = customer.MembershipType;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
                 customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
             }
             Context.SaveChanges();
@@ -78,9 +79,11 @@ namespace Vidly.Controllers
             return RedirectToAction("Index", "Customers");
         }
 
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Edit(int id)
         {
             var customer = Context.Customers.SingleOrDefault(c => c.Id == id);
+
             if (customer == null)
                 return HttpNotFound();
 

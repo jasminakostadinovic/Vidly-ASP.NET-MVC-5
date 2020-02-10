@@ -20,7 +20,7 @@ namespace Vidly.Controllers
         }
         public ViewResult Index()
         {
-            if (User.IsInRole(RoleName.CanManageMovies))
+            if (User.IsInRole(RoleName.Admin))
             {
                 return View("List");
             }
@@ -39,13 +39,12 @@ namespace Vidly.Controllers
             return View(movie);
         }
 
-        [Authorize(Roles = RoleName.CanManageMovies)]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult New()
         {
             var genres = Context.Genres.ToList();
             var viewModel = new NewMovieViewModel
             {
-                Movie = new Movie(),
                 Genres = genres
             };
             return View("MovieForm", viewModel);
@@ -53,14 +52,13 @@ namespace Vidly.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RoleName.CanManageMovies)]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new NewMovieViewModel
+                var viewModel = new NewMovieViewModel(movie)
                 {
-                    Movie = movie,
                     Genres = Context.Genres.ToList()
                 };
                 return View("MovieForm", viewModel);
@@ -85,16 +83,16 @@ namespace Vidly.Controllers
             return RedirectToAction("Index", "Movies");
         }
 
-        [Authorize(Roles = RoleName.CanManageMovies)]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Edit(int id)
         {
             var movie = Context.Movies.SingleOrDefault(m => m.Id == id);
+
             if (movie == null)
                 return HttpNotFound();
 
-            var viewModel = new NewMovieViewModel()
+            var viewModel = new NewMovieViewModel(movie)
             {
-                Movie = movie,
                 Genres = Context.Genres.ToList()
             };
             return View("MovieForm", viewModel);

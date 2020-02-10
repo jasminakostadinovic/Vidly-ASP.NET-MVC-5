@@ -20,8 +20,7 @@
 @section scripts
     {
     <script>
-        $(document).ready(function ()
-        {
+        $(document).ready(function () {
             var table = $("#movies").DataTable(
                 {
                     ajax:
@@ -29,8 +28,8 @@
                         url: "/api/movies",
                         dataSrc: ""
                     },
-                    columns:
-                        [
+                    columns: [
+
                             {
                                 data: "name"
                             },
