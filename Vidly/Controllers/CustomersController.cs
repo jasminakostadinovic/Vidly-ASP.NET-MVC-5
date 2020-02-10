@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Vidly.Models;
 using System.Data.Entity;
 using Vidly.ViewModel;
+using Vidly.Authorization;
 
 namespace Vidly.Controllers
 {
@@ -42,7 +43,7 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
-        [Authorize(Roles = RoleName.Admin)]
+        [CustomAuthorize(Roles = RoleName.Admin)]
         public ActionResult New()
         {
             var membershipTypes = Context.MembershipTypes.ToList();
@@ -56,7 +57,7 @@ namespace Vidly.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        [Authorize(Roles = RoleName.Admin)]
+        [CustomAuthorize(Roles = RoleName.Admin)]
         public ActionResult Save(Customer customer)
         {
             if (!ModelState.IsValid)
@@ -83,7 +84,7 @@ namespace Vidly.Controllers
             return RedirectToAction("Index", "Customers");
         }
 
-        [Authorize(Roles = RoleName.Admin)]
+        [CustomAuthorize(Roles = RoleName.Admin)]
         public ActionResult Edit(int id)
         {
             var customer = Context.Customers.SingleOrDefault(c => c.Id == id);

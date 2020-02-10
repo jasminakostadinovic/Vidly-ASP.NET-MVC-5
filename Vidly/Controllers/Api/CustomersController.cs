@@ -7,6 +7,7 @@ using System.Web.Http;
 using Vidly.Dtos;
 using Vidly.Models;
 using System.Data.Entity;
+using Vidly.Authorization;
 
 namespace Vidly.Controllers.Api
 {
@@ -47,7 +48,7 @@ namespace Vidly.Controllers.Api
 
         //POST /api/customers
         [HttpPost]
-        [Authorize(Roles = RoleName.Admin)]
+        [CustomAuthorize(Roles = RoleName.Admin)]
         public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
@@ -64,7 +65,7 @@ namespace Vidly.Controllers.Api
 
         //PUT /api/customers/1
         [HttpPut]
-        [Authorize(Roles = RoleName.Admin)]
+        [CustomAuthorize(Roles = RoleName.Admin)]
         public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
@@ -84,7 +85,7 @@ namespace Vidly.Controllers.Api
 
         //DELETE /api/customers/1
         [HttpDelete]
-        [Authorize(Roles = RoleName.Admin)]
+        [CustomAuthorize(Roles = RoleName.Admin)]
         public IHttpActionResult DeleteCustomer(int id)
         {
             var customerInDb = Context.Customers.SingleOrDefault(c => c.Id == id);

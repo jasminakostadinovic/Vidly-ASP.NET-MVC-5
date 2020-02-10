@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using Vidly.Authorization;
 using Vidly.Models;
 using Vidly.ViewModel;
 
@@ -39,7 +40,7 @@ namespace Vidly.Controllers
             return View(movie);
         }
 
-        [Authorize(Roles = RoleName.Admin)]
+        [CustomAuthorize(Roles = RoleName.Admin)]
         public ActionResult New()
         {
             var genres = Context.Genres.ToList();
@@ -52,7 +53,7 @@ namespace Vidly.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RoleName.Admin)]
+        [CustomAuthorize(Roles = RoleName.Admin)]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
@@ -83,7 +84,7 @@ namespace Vidly.Controllers
             return RedirectToAction("Index", "Movies");
         }
 
-        [Authorize(Roles = RoleName.Admin)]
+        [CustomAuthorize(Roles = RoleName.Admin)]
         public ActionResult Edit(int id)
         {
             var movie = Context.Movies.SingleOrDefault(m => m.Id == id);
